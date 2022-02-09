@@ -48,7 +48,7 @@ const App = () => {
         itemArray[2] === itemArray[4] &&
         itemArray[2] === itemArray[6])
     ) {
-      setWinMessage(`${itemArray[0]} wins`);
+      setWinMessage(`${!isCross ? "Circle" : "Cross"} wins`);
     }
   };
 
@@ -71,19 +71,17 @@ const App = () => {
         <ToastContainer position="bottom-center" />
         <Row>
           <Col md={6} className="offset-md-3">
+            <h1 className="text-center text-success">Tic Tac Toe</h1>
             {winMessage ? (
               <div className="mb-2 mt-2">
                 <h1 className="text-primary text-uppercase text-center">
                   {winMessage}
                 </h1>
-                <Button color="success" block onClick={reloadGame}>
-                  Reload the game
-                </Button>
               </div>
             ) : (
-              <h1 className="text-center text-warning">
-                {isCross ? "Cross" : "Circle"}
-              </h1>
+              <h2 className="text-center text-warning">
+                {`${isCross ? "Cross" : "Circle"} Playing `}
+              </h2>
             )}
             <div className="grid">
               {itemArray.map((item, index) => (
@@ -99,12 +97,14 @@ const App = () => {
                 </Card>
               ))}
             </div>
+            <div className="mb-2 mt-2">
+              <Button color="success" block onClick={reloadGame}>
+                Reload the game
+              </Button>
+            </div>
           </Col>
         </Row>
       </Container>
-      <div>
-        <button>Random start</button>
-      </div>
     </div>
   );
 };
